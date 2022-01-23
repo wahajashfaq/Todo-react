@@ -6,9 +6,11 @@ const Navigation = () => {
   return (
     <nav>
       <ul>
-        {
-          menu.map(({name,path})=><Link key={path} style={{ marginLeft: 12 }} to={path}>{name}</Link>)
-        }
+        {menu.map(({ name, path }) => (
+          <Link key={path} style={{ marginLeft: 12 }} to={path}>
+            {name}
+          </Link>
+        ))}
       </ul>
     </nav>
   );

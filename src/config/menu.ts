@@ -4,10 +4,10 @@ type Menu = {
 };
 
 const menu: Menu[] = [
-    {
-        name: "Task List",
-        path: "/"
-    },
+  {
+    name: "Task List",
+    path: "/"
+  }
 ];
 
 export default menu;
