@@ -1,9 +1,11 @@
-const reducer = (
-  state = {
-    items: []
-  },
-  action
-) => {
+const initialState = {
+  items: []
+};
+
+const reducer = (state = initialState, action = {}) => {
+  const newState = {
+    ...state
+  };
   switch (action.type) {
     case "ADD_ITEM": {
       break;
@@ -14,9 +16,11 @@ const reducer = (
     case "ADD_ITEM_ROLLBACK": {
       break;
     }
-    default:
+    default: {
       break;
+    }
   }
+  return newState;
 };
 
 export default reducer;
