@@ -26,7 +26,8 @@ type Config = {
 };
 
 export function register(config?: Config) {
-  if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
+  console.log("register");
+  if ("serviceWorker" in navigator) {
     console.log("registering worker");
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
@@ -43,6 +44,7 @@ export function register(config?: Config) {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
       if (isLocalhost) {
+        console.log("localhost")
         // This is running on localhost. Let's check if a service worker still exists or not.
         checkValidServiceWorker(swUrl, config);
 
@@ -53,6 +55,9 @@ export function register(config?: Config) {
             "This web app is being served cache-first by a service " +
               "worker. To learn more, visit https://cra.link/PWA"
           );
+        })
+        .catch((e) => {
+          console.log(e);
         });
       } else {
         // Is not localhost. Just register service worker
