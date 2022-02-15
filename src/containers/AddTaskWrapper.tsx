@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import itemActions from "../redux/todo/action";
+
+const { addItem } = itemActions;
 
 const AddTask: React.FC = () => {
   const [name, setName] = useState("");
@@ -21,4 +25,6 @@ const AddTask: React.FC = () => {
   );
 };
 
-export default AddTask;
+const mapStateToProps = () => ({});
+
+export default connect(mapStateToProps, { addItem })(AddTask);

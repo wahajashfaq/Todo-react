@@ -1,10 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 type TaskItemProps = {
   name: string,
   done: boolean,
-  id: number,
-  onTaskToogle: (id: number, checked: boolean) => void
+  id: string,
+  pending?: boolean
+  onTaskToogle: (id: string, checked: boolean) => void
 };
 
 const TaskItem: React.FC<TaskItemProps> = ({
@@ -21,7 +23,9 @@ const TaskItem: React.FC<TaskItemProps> = ({
       <span>
         <input type="checkbox" checked={done} onChange={handleChange} />
       </span>
-      <span style={{ padding: 12 }}>{name}</span>
+      <Link to={`/detail/${id}`}>
+        <span style={{ padding: 12 }}>{name}</span>
+      </Link>
     </div>
   );
 };

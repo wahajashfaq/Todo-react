@@ -1,56 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import TaskItem from "../componsnts/TaskItem";
 
-const initialTasks = [
-  {
-    id: 1,
-    name: "Task 1",
-    done: false
-  },
-  {
-    id: 2,
-    name: "Task 2",
-    done: false
-  },
-  {
-    id: 3,
-    name: "Task 3",
-    done: true
-  },
-  {
-    id: 4,
-    name: "Task 4",
-    done: false
-  }
-];
-
-const TaskListWrapper = () => {
-  const [tasks, setTasks] = useState(initialTasks);
-  const handleToogle = (id: number, checked: boolean) => {
-    const currentTaskIndex = tasks.map((item) => item.id).indexOf(id);
-    const newTasks = [
-      ...tasks.slice(0, currentTaskIndex),
-      {
-        ...tasks[currentTaskIndex],
-        done: checked
-      },
-      ...tasks.slice(currentTaskIndex + 1)
-    ];
-    setTasks(newTasks);
+const TaskListWrapper = (props: any) => {
+  const handleToogle = (id: any, checked: any) => {
+    console.log(id, checked);
   };
   return (
     <div>
-      {tasks.map(({ id, done, name }) => (
+      {props.items.map((item: any) => (
         <TaskItem
-          key={id}
+          key={item.id}
           onTaskToogle={handleToogle}
-          id={id}
-          done={done}
-          name={name}
+          id={item.id}
+          done={item.done}
+          name={item.name}
         />
       ))}
     </div>
   );
 };
 
-export default TaskListWrapper;
+const mapStateToProps = (state: any) => ({
+  items: Object.entries(state.items)
+});
+
+export default connect(mapStateToProps)(TaskListWrapper);
